@@ -1,46 +1,37 @@
-# Use the official Ruby image with version 3.2.0
-FROM ruby:3.2.0
+# syntax = docker/dockerfile:1
 
-# Install dependencies
-RUN apt-get update -qq && apt-get install -y \
-  nodejs \
-  postgresql-client \
-  libssl-dev \
-  libreadline-dev \
-  zlib1g-dev \
-  build-essential \
-  curl
+# Define the Ruby version to use in the image
+ARG RUBY_VERSION=3.2.5
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
 
-# Install rbenv
-RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \
-  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc && \
-  echo 'eval "$(rbenv init -)"' >> ~/.bashrc && \
-  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build && \
-  echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
-
-# Install the specified Ruby version using rbenv
-ENV PATH="/root/.rbenv/bin:/root/.rbenv/shims:$PATH"
-RUN rbenv install 3.2.0 && rbenv global 3.2.0
-
-# Set the working directory
-WORKDIR /myapp
-
-# Copy the Gemfile and Gemfile.lock
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
-
-# Install Gems dependencies
-RUN gem install bundler && bundle install
-
-# Copy the application code
-COPY . /myapp
-
-# Precompile assets (optional, if using Rails with assets)
-RUN bundle exec rake assets:precompile
-
-# Expose the port the app runs on
+# Expose port 3000 for the Rails server
 EXPOSE 3000
 
-# Command to run the server
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# Set the working directory for the app
+WORKDIR /workspace
 
+# Install Node.js, Yarn, and essential system dependencies including Chrome and ChromeDriver
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get update -qq && \
+    apt-get install -y nodejs yarn build-essential libvips sqlite3 \
+    chromium-driver chromium libgconf-2-4 libnss3 fonts-liberation libxss1 \
+    libappindicator3-1 libasound2 libatk-bridge2.0-0 libgtk-3-0 libx11-xcb1 \
+    libxcomposite1 libxrandr2 libxdamage1 libxkbcommon0 libgbm1 libpango-1.0-0 libpangocairo-1.0-0 \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
+# Install Bundler
+RUN gem install bundler
+
+# Copy the Gemfile and Gemfile.lock into the Docker image
+COPY Gemfile Gemfile.lock ./
+
+COPY . /workspace
+
+RUN apt-get update && apt-get install -y libpq-dev
+
+
+# Install the required gems
+RUN bundle install
+
+# Set default entry command to a bash shell
+CMD ["bash"]
