@@ -154,3 +154,49 @@ Processing by WhalesController#index as TURBO_STREAM
 Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.1ms | Allocations: 2356)
 
 
+Started GET "/" for 192.168.65.1 at 2024-11-09 17:58:19 +0000
+Cannot render console from 192.168.65.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WhalesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering whales/index.html.erb within layouts/application
+  [1m[36mWhale Load (0.1ms)[0m  [1m[34mSELECT "whales".* FROM "whales"[0m
+  ↳ app/views/whales/index.html.erb:6
+  Rendered whales/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 3898)
+  Rendered layout layouts/application.html.erb (Duration: 252.6ms | Allocations: 97572)
+Completed 200 OK in 288ms (Views: 255.5ms | ActiveRecord: 2.2ms | Allocations: 114349)
+
+
+Started GET "/whales/new" for 192.168.65.1 at 2024-11-09 17:58:21 +0000
+Cannot render console from 192.168.65.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by WhalesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering whales/new.html.erb within layouts/application
+  Rendered whales/_form.html.erb (Duration: 20.4ms | Allocations: 5009)
+  Rendered whales/new.html.erb within layouts/application (Duration: 22.4ms | Allocations: 5311)
+  Rendered layout layouts/application.html.erb (Duration: 25.8ms | Allocations: 6413)
+Completed 200 OK in 40ms (Views: 26.5ms | ActiveRecord: 0.5ms | Allocations: 12281)
+
+
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DropWhalesTable (20241109180855)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "whales"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241109180855') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/whales/new" for 192.168.65.1 at 2024-11-09 18:13:06 +0000
+Cannot render console from 192.168.65.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/whales/new"):
+  
+Started GET "/" for 192.168.65.1 at 2024-11-09 18:13:25 +0000
+Cannot render console from 192.168.65.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-7.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-7.1.5/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.6ms | Allocations: 252)
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.0ms | Allocations: 1782)
+
+
