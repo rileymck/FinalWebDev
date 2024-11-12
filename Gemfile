@@ -9,7 +9,11 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 gem "sprockets-rails"
 
 # Database for Active Record
-gem "sqlite3", "~> 1.4"
+#old database now using PostgreSQL
+#gem "sqlite3", "~> 1.4"
+
+#database PostgreSQL
+gem "pg"
 
 # Server
 gem "puma", ">= 5.0"
