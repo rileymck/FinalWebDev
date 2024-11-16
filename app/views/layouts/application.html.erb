@@ -14,13 +14,16 @@
     <%= yield %>
     <ul>
      <% if user_signed_in? %>
-       <li><%= link_to "Hi, #{current_user.email}", edit_user_registration_path %></li>
-       <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "Hi, #{current_user.email}", edit_user_registration_path %></li>
+        <li>
+          <%= form_tag(destroy_user_session_path, method: :delete, data: { turbo: false }) do %>
+            <%= submit_tag 'Sign Out', style: 'border: none; background: none; color: #007bff; text-decoration: underline; cursor: pointer' %>
+          <% end %>
+        </li>
      <% else %>
        <li><%= link_to 'Sign In', new_user_session_path %></li>
        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
      <% end %>
-   </ul>
-
+    </ul>
   </body>
 </html>
