@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+
+/* Light Theme */
+body[data-theme="light"] {
+    background: white;
+    color: black;
+}
+  
+/* Dark Theme */
+body[data-theme="dark"] {
+    background: black;
+    color: white;
+}
+
+/* Optional: Button Style */
+button#theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button#theme-toggle:hover {
+    background: #0056b3;
+}

@@ -10,8 +10,35 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-theme="light">
+    <button id="theme-toggle">Switch to Dark Mode</button>
     <%= yield %>
+    <script>
+      // Theme Toggle Script
+      const body = document.body;
+      const button = document.getElementById('theme-toggle');
+
+      // Function to set the theme
+      const setTheme = (theme) => {
+        body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        button.textContent = theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+      };
+
+      // Load the saved theme or default to 'light'
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+
+      // Toggle the theme on button click
+      button.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+      });
+    </script>
+
+
+
     <ul>
      <% if user_signed_in? %>
         <li><%= link_to "Hi, #{current_user.email}", edit_user_registration_path %></li>
@@ -25,5 +52,9 @@
        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
      <% end %>
     </ul>
+
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
   </body>
 </html>

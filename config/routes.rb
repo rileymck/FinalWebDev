@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'users/new'
-  devise_for :users
+  get "theme", to: "theme#update", as: "set_theme"
+  devise_for :users, controllers: {
+    passwords: 'users/passwords'
+  }
+
+  resources :users, only: [:new, :create]
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,4 +13,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root "users#new"
+
+  
 end
