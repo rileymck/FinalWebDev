@@ -1,4 +1,6 @@
-<h2>Forgot your password?</h2>
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -12,5 +14,26 @@
     <%= f.submit "Send me reset password instructions" %>
   </div>
 <% end %>
+
+
+<% if @reset_password_link %>
+  <p>
+    <strong>Reset your password:</strong> 
+    <a href="<%= @reset_password_link %>">Click here to reset your password</a>
+  </p>
+<% end %>
+
+<script>
+    // Theme Toggle Script
+    const body = document.body;
+    const button = document.getElementById('theme-toggle');
+
+    button.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    body.setAttribute('data-theme', newTheme);
+    button.textContent = newTheme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    });
+</script>
 
 <%= render "devise/shared/links" %>

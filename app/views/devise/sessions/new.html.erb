@@ -7,6 +7,8 @@
 <% end %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -28,5 +30,18 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
+
+<script>
+    // Theme Toggle Script
+    const body = document.body;
+    const button = document.getElementById('theme-toggle');
+
+    button.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    body.setAttribute('data-theme', newTheme);
+    button.textContent = newTheme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    });
+</script>
 
 <%= render "devise/shared/links" %>

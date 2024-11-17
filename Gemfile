@@ -37,7 +37,11 @@ group :development, :test do
   gem "rspec-rails", "~> 6.0"  # Testing framework
   gem "capybara"               # System testing tool
   gem "selenium-webdriver"     # Web driver for system testing
+  gem 'factory_bot_rails'
 end
+
+gem 'faker'
+
 
 group :development do
   gem "web-console"  # Debugging tool in development
