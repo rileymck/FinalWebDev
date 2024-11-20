@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Chats</h1>
+
+<p style="color: green"><%= notice %></p>
+you dont have any chats yet. Create one by clicking
+<%= form_with(model: Chat.new) do |form| %>
+  <%= form.submit 'Here', class: 'btn btn-dark border-light' %>
+<% end %>
+
+<script>
+    // Theme Toggle Script
+    const body = document.body;
+    const button = document.getElementById('theme-toggle');
+
+    button.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    body.setAttribute('data-theme', newTheme);
+    button.textContent = newTheme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    });
+</script>

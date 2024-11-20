@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "user-chats", partial: "chats/chat", locals: { chat: @chat } %>
+<= turbo_stream.replace "current-chat", partial: "chats/chat", locals: { chat: @chat} %>
+<%= turbo_stream.append "user-chats", partial: "chats/chat", locals: { chat: @chat } %>

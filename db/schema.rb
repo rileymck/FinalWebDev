@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_14_040157) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_20_030911) do
+  create_table "chats", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.json "history", default: {}
+    t.string "q_and_a"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["user_id"], name: "index_chats_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,4 +33,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_14_040157) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chats", "users"
 end

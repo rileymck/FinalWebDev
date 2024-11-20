@@ -1,1 +1,14 @@
 <%= yield %>
+
+<script>
+    // Theme Toggle Script
+    const body = document.body;
+    const button = document.getElementById('theme-toggle');
+
+    button.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    body.setAttribute('data-theme', newTheme);
+    button.textContent = newTheme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+    });
+</script>

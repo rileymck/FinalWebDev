@@ -5,28 +5,35 @@
  * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
  *= require_tree .
  *= require_self
  */
 
-/* Light Theme */
+/* Sidebar styles for light theme */
+body[data-theme="light"] aside {
+    background-color: #ffffff; /* Light theme background */
+    color: #000000; /* Text color for light theme */
+}
+
+/* Sidebar styles for dark theme */
+body[data-theme="dark"] aside {
+    background-color: #333333; /* Dark theme background */
+    color: #ffffff; /* Text color for dark theme */
+}
+
+
+/* Theme styles */
 body[data-theme="light"] {
     background: white;
     color: black;
 }
-  
-/* Dark Theme */
+
 body[data-theme="dark"] {
     background: black;
     color: white;
 }
 
-/* Optional: Button Style */
+/* Optional: Button styles */
 button#theme-toggle {
     position: fixed;
     top: 1rem;
@@ -42,4 +49,31 @@ button#theme-toggle {
 
 button#theme-toggle:hover {
     background: #0056b3;
+}
+
+
+
+/* Sidebar: default styling */
+.sidebar {
+    height: 100%; /* Full height of the container */
+    overflow-y: auto; /* Allow scrolling */
+    border-right: 1px solid #444; /* Optional border */
+    width: 225px; /* Match inline style */
+}
+
+/* Light Theme: Sidebar Styling */
+body[data-theme="light"] .sidebar {
+    background-color: #ffffff !important; /* Ensure white for light mode */
+    color: #000000 !important; /* Black text */
+}
+
+/* Dark Theme: Sidebar Styling */
+body[data-theme="dark"] .sidebar {
+    background-color: #000000 !important; /* Dark gray for dark mode */
+    color: #ffffff !important; /* White text */
+}
+
+/* Reset Bootstrap conflicting styles */
+.sidebar.text-white {
+    color: inherit !important; /* Override Bootstrap default */
 }

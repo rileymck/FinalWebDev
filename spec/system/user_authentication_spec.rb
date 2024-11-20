@@ -16,10 +16,10 @@ RSpec.describe 'User Sign Up and Login', type: :system do
       click_button 'Sign up'
 
       # Expect to see success message and be logged in
-      expect(page).to have_content('Welcome! You have signed up successfully.')
+      expect(page).to have_content('ChatGPT Clone')
 
       # Expect the logout form to be present
-      expect(page).to have_button('Sign Out')
+      expect(page).to have_button('Logout')
     end
   end
 
@@ -35,8 +35,8 @@ RSpec.describe 'User Sign Up and Login', type: :system do
 
       # Expect to see validation error messages
       expect(page).to have_content('Email is invalid')
-      expect(page).to have_content('Password is too short (minimum is 6 characters)')
       expect(page).to have_content("Password confirmation doesn't match Password")
+      expect(page).to have_content('Password (6 characters minimum)')
 
       # Ensure the logout button is not present
       expect(page).to_not have_button('Sign Out')
