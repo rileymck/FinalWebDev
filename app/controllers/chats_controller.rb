@@ -14,8 +14,6 @@ class ChatsController < ApplicationController
   # GET /chats/1 or /chats/1.json
   def show
     @chat = Chat.find(params[:id])
-    # Ensure this line exists:
-    render :show
   end
 
   # GET /chats/new

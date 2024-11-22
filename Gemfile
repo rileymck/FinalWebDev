@@ -53,3 +53,8 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "ruby-openai", "~> 7.3"
 
 gem 'rails-ujs'
+
+gem "sassc-rails"
+
+
+gem 'bootstrap', '~> 5.0'

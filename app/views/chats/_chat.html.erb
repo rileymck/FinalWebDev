@@ -1,4 +1,7 @@
-<div class="d-flex justify-content-between align-items-center mb-2", id="<%= dom_id(chat) %>">
-  <%= link_to chat.name, chat_path(chat), class: "text-white flex-grow-1 text-decoration-none" %>
-  <%= button_to "Delete", chat_path(chat), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger ms-2" %>
-</div>
+<li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3">
+  <!-- Display the chat name or default to 'Chat #id' -->
+  <span><%= chat.name || "Chat ##{chat.id}" %></span>
+
+  <!-- Delete Button -->
+  <%= button_to "Delete", chat_path(chat), method: :delete, class: "btn btn-danger btn-sm" %>
+</li>
