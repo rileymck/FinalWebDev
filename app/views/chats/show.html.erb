@@ -4,3 +4,11 @@
 <ul class="list-group">
   <%= render partial: "chats/chat", locals: { chat: @chat } %>
 </ul>
+
+
+<div id="chat-messages">
+  <% messages = JSON.parse(@chat.history)["messages"] rescue [] %>
+  <% messages.each do |message| %>
+    <p><%= message["text"] %> (<%= message["timestamp"] %>)</p>
+  <% end %>
+</div>

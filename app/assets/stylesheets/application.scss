@@ -85,7 +85,7 @@ body[data-theme="dark"] .sidebar {
 
 /* Sidebar hidden state */
 body.sb-sidenav-toggled #sidebar-wrapper {
-    margin-left: -110px; /* Matches the sidebar width */
+    margin-left: -150px; /* Matches the sidebar width */
     transition: margin-left 0.3s ease;
 }
 

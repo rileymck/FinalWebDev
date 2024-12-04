@@ -1,0 +1,4 @@
+<%= turbo_stream.append "chat-messages" do %>
+    <p><%= params[:chat][:message] %> (<%= Time.now %>)</p>
+<% end %>
+  

@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_importmap_tags %>
+    <%= turbo_include_tags %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
@@ -34,7 +35,7 @@
         <div class="list-group list-group-flush">
             <turbo-frame id="user-chats">
                 <ul class="list-unstyled">
-                    <%= render partial: "chats/chat", collection: current_user.chats.order(created_at: :desc), as: :chat %>
+                <%= render partial: "chats/chat_list", collection: current_user.chats.order(created_at: :desc), as: :chat %>
                 </ul>
             </turbo-frame>
         </div>
@@ -49,8 +50,9 @@
         </nav>
         <!-- Page content-->
         <div class="container-fluid">
-          <h1 class="mt-4">Chats</h1>
+
         </div>
+        <%= render "chats/chat", chat: @chat %>
       </div>
     </div>
     <!-- Bootstrap core JS -->

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #resources :chats
+  #resources :chats, only: [:create, :destroy] do
   get 'users/new'
   get "theme", to: "theme#update", as: "set_theme"
   devise_for :users, controllers: {

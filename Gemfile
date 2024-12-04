@@ -58,3 +58,6 @@ gem "sassc-rails"
 
 
 gem 'bootstrap', '~> 5.0'
+
+
+gem 'dotenv-rails', groups: [:development, :test]

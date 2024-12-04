@@ -1,12 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<turbo-frame id="chat_list">
+  <ul>
+    <%= render partial: "chats/chat_list", collection: current_user.chats, as: :chat %>
+  </ul>
+</turbo-frame>
 
-<h1>Chats</h1>
 
-<p style="color: green"><%= notice %></p>
-you dont have any chats yet. Create one by clicking
-<%= form_with(model: Chat.new) do |form| %>
-  <%= form.submit 'Here', class: 'btn btn-dark border-light' %>
-<% end %>
+
+
+
+
 
 <script>
     // Theme Toggle Script
